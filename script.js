@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const subscribeBtn = document.getElementById("subscribe-btn");
     if (subscribeBtn) {
       subscribeBtn.addEventListener("click", () => {
-        const emailInput = document.getElementById("email");
+        const emailInput = document.getElementById("subscribe-email");
         const email = emailInput.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (emailRegex.test(email)) {
