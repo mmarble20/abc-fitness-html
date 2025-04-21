@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const subscribeBtn = document.getElementById("subscribe-btn");
     if (subscribeBtn) {
       subscribeBtn.addEventListener("click", () => {
-        const emailInput = document.getElementById("email-input");
+        const emailInput = document.getElementById("subscribe-email");
         if (emailInput && emailInput.value.includes("@")) {
           alert("Thank you for subscribing.");
         } else {
