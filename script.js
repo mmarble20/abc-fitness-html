@@ -1,83 +1,104 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // SUBSCRIBE button alert (footer)
+// JavaScript for ABC Fitness Studio Website
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Alert for Subscribe button
     const subscribeBtn = document.getElementById("subscribe-btn");
     if (subscribeBtn) {
       subscribeBtn.addEventListener("click", () => {
-        const emailInput = document.getElementById("subscribe-email");
-        const email = emailInput.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-        if (emailPattern.test(email)) {
+        const emailInput = document.getElementById("email-input");
+        if (emailInput && emailInput.value.includes("@")) {
           alert("Thank you for subscribing.");
-          emailInput.value = "";
         } else {
-          alert("Invalid email address.");
+          alert("Please enter a valid email address.");
         }
       });
     }
   
-    // CONTACT form alert (about.html)
-    const contactForm = document.getElementById("contact-form");
-    if (contactForm) {
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        alert("Thank you for your message.");
-        contactForm.reset();
-      });
+    // Cart functionality using sessionStorage
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+  
+    function updateCartStorage() {
+      sessionStorage.setItem("cart", JSON.stringify(cart));
     }
   
-    // GALLERY - Cart functionality
-    const addToCartButtons = document.querySelectorAll("button.add-to-cart");
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
+    addToCartButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const itemName = button.getAttribute("data-name");
+        cart.push(itemName);
+        updateCartStorage();
+        alert("Item added to the cart");
+      });
+    });
+  
+    const viewCartBtn = document.getElementById("view-cart-btn");
+    const cartModal = document.getElementById("cart-modal");
+    const cartItemsList = document.getElementById("cart-items");
     const clearCartBtn = document.getElementById("clear-cart-btn");
     const processOrderBtn = document.getElementById("process-order-btn");
-    const cartItemsList = document.getElementById("cart-items");
   
-    if (addToCartButtons.length && cartItemsList) {
-      addToCartButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const itemName = button.getAttribute("data-item");
-          const li = document.createElement("li");
-          li.textContent = itemName;
-          cartItemsList.appendChild(li);
-          alert("Item added to the cart.");
-        });
+    if (viewCartBtn && cartModal && cartItemsList) {
+      viewCartBtn.addEventListener("click", () => {
+        cartItemsList.innerHTML = "";
+        const savedCart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        if (savedCart.length === 0) {
+          cartItemsList.innerHTML = "<li>Your cart is empty</li>";
+        } else {
+          savedCart.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            cartItemsList.appendChild(li);
+          });
+        }
+        cartModal.style.display = "block";
       });
     }
   
     if (clearCartBtn) {
       clearCartBtn.addEventListener("click", () => {
-        if (cartItemsList.children.length > 0) {
-          cartItemsList.innerHTML = "";
-          alert("Cart cleared.");
-        } else {
+        const savedCart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        if (savedCart.length === 0) {
           alert("No items to clear.");
+        } else {
+          sessionStorage.removeItem("cart");
+          cartItemsList.innerHTML = "<li>Your cart is now empty</li>";
+          alert("Cart cleared");
         }
       });
     }
   
     if (processOrderBtn) {
       processOrderBtn.addEventListener("click", () => {
-        if (cartItemsList.children.length > 0) {
-          cartItemsList.innerHTML = "";
-          alert("Thank you for your order.");
+        const savedCart = JSON.parse(sessionStorage.getItem("cart")) || [];
+        if (savedCart.length === 0) {
+          alert("Cart is empty");
         } else {
-          alert("Cart is empty.");
+          sessionStorage.removeItem("cart");
+          cartItemsList.innerHTML = "<li>Order placed successfully</li>";
+          alert("Thank you for your order");
         }
       });
     }
   
-    // Toggle cart modal visibility
-    const viewCartBtn = document.getElementById("view-cart-btn");
-    const cartModal = document.getElementById("cart-modal");
+    // Contact Form functionality using localStorage
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
   
-    if (viewCartBtn && cartModal) {
-      viewCartBtn.addEventListener("click", () => {
-        if (cartModal.style.display === "none" || cartModal.style.display === "") {
-          cartModal.style.display = "block";
-        } else {
-          cartModal.style.display = "none";
-        }
+        const contactData = {
+          name,
+          email,
+          message,
+          timestamp: new Date().toISOString()
+        };
+  
+        localStorage.setItem("customOrder", JSON.stringify(contactData));
+        alert("Thank you for your message");
+        contactForm.reset();
       });
     }
   });
-  
