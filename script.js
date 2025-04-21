@@ -37,6 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const viewCartBtn = document.getElementById("view-cart-btn");
     const cartModal = document.getElementById("cart-modal");
     const cartList = document.getElementById("cart-items");
+
+    viewCartBtn.addEventListener("click", function () {
+        // Toggle display
+        if (cartModal.style.display === "none" || cartModal.style.display === "") {
+          cartModal.style.display = "block";
+        } else {
+          cartModal.style.display = "none";
+        }
+      });
   
     if (viewCartBtn && cartModal && cartList) {
       viewCartBtn.addEventListener("click", () => {
