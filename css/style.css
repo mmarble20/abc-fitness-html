@@ -88,3 +88,17 @@ label {
   width: 100%;
 }
 
+#cart-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#cart-items li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  color: #000; /* ensure text is visible on white background */
+  font-weight: 500;
+}
+
+
