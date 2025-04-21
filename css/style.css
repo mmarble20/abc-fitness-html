@@ -137,8 +137,23 @@ label {
   border-radius: 4px;
 }
 
-* {
-  border: 1px solid red;
+#cart-modal {
+  background-color: #fff; /* White background for contrast */
+  border: 2px solid #17253F; /* Optional: Brisk Blue border for visibility */
+  padding: 20px;
+  color: #00231C; /* Detritus Green - readable dark text */
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  width: 300px;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#cart-items li {
+  color: #00231C; /* Explicitly set readable text */
+  font-size: 16px;
+  padding: 5px 0;
 }
 
 
