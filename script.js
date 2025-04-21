@@ -33,25 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Item added to the cart");
       });
     });
-
-    document.getElementById('view-cart-btn').addEventListener('click', function () {
-        const modal = document.getElementById('cart-modal');
-        modal.style.display = (modal.style.display === 'none') ? 'block' : 'none';
-      });
       
   
     const viewCartBtn = document.getElementById("view-cart-btn");
     const cartModal = document.getElementById("cart-modal");
     const cartList = document.getElementById("cart-items");
 
-    viewCartBtn.addEventListener("click", function () {
-        // Toggle display
-        if (cartModal.style.display === "none" || cartModal.style.display === "") {
-          cartModal.style.display = "block";
-        } else {
-          cartModal.style.display = "none";
-        }
-      });
+
   
     if (viewCartBtn && cartModal && cartList) {
       viewCartBtn.addEventListener("click", () => {
