@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Item added to the cart");
       });
     });
+
+    document.getElementById('view-cart-btn').addEventListener('click', function () {
+        const modal = document.getElementById('cart-modal');
+        modal.style.display = (modal.style.display === 'none') ? 'block' : 'none';
+      });
+      
   
     const viewCartBtn = document.getElementById("view-cart-btn");
     const cartModal = document.getElementById("cart-modal");
