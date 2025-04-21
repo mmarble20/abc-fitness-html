@@ -1,74 +1,81 @@
-// ===== Footer: Subscribe Button =====
 document.addEventListener("DOMContentLoaded", function () {
+    // SUBSCRIBE button alert (footer)
     const subscribeBtn = document.getElementById("subscribe-btn");
     if (subscribeBtn) {
       subscribeBtn.addEventListener("click", () => {
         const emailInput = document.getElementById("subscribe-email");
-        if (emailInput && emailInput.value.trim() !== "") {
+        const email = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+        if (emailPattern.test(email)) {
           alert("Thank you for subscribing.");
           emailInput.value = "";
         } else {
-          alert("Please enter a valid email.");
+          alert("Invalid email address.");
         }
       });
     }
   
-    // ===== About Us Page: Form Submit =====
+    // CONTACT form alert (about.html)
     const contactForm = document.getElementById("contact-form");
     if (contactForm) {
-      contactForm.addEventListener("submit", (e) => {
+      contactForm.addEventListener("submit", function (e) {
         e.preventDefault();
         alert("Thank you for your message.");
         contactForm.reset();
       });
     }
   
-    // ===== Gallery Page: Shopping Cart Logic =====
-    const cart = [];
+    // GALLERY - Cart functionality
+    const addToCartButtons = document.querySelectorAll("button.add-to-cart");
+    const clearCartBtn = document.getElementById("clear-cart-btn");
+    const processOrderBtn = document.getElementById("process-order-btn");
+    const cartItemsList = document.getElementById("cart-items");
   
-    document.querySelectorAll(".add-to-cart").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const itemName = btn.getAttribute("data-item");
-        cart.push(itemName);
-        alert("Item added to the cart");
-      });
-    });
-      
-  
-    const viewCartBtn = document.getElementById("view-cart-btn");
-    const cartModal = document.getElementById("cart-modal");
-    const cartList = document.getElementById("cart-items");
-
-
-  
-    if (viewCartBtn && cartModal && cartList) {
-      viewCartBtn.addEventListener("click", () => {
-        cartList.innerHTML = "";
-        cart.forEach((item) => {
+    if (addToCartButtons.length && cartItemsList) {
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const itemName = button.getAttribute("data-item");
           const li = document.createElement("li");
-          li.textContent = item;
-          cartList.appendChild(li);
+          li.textContent = itemName;
+          cartItemsList.appendChild(li);
+          alert("Item added to the cart.");
         });
-        cartModal.style.display = "block";
       });
+    }
   
-      document.getElementById("clear-cart-btn").addEventListener("click", () => {
-        if (cart.length === 0) {
-          alert("No items to clear");
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener("click", () => {
+        if (cartItemsList.children.length > 0) {
+          cartItemsList.innerHTML = "";
+          alert("Cart cleared.");
         } else {
-          cart.length = 0;
-          alert("Cart cleared");
-          cartList.innerHTML = "";
+          alert("No items to clear.");
         }
       });
+    }
   
-      document.getElementById("process-order-btn").addEventListener("click", () => {
-        if (cart.length === 0) {
-          alert("Cart is empty");
+    if (processOrderBtn) {
+      processOrderBtn.addEventListener("click", () => {
+        if (cartItemsList.children.length > 0) {
+          cartItemsList.innerHTML = "";
+          alert("Thank you for your order.");
         } else {
-          alert("Thank you for your order");
-          cart.length = 0;
-          cartList.innerHTML = "";
+          alert("Cart is empty.");
+        }
+      });
+    }
+  
+    // Toggle cart modal visibility
+    const viewCartBtn = document.getElementById("view-cart-btn");
+    const cartModal = document.getElementById("cart-modal");
+  
+    if (viewCartBtn && cartModal) {
+      viewCartBtn.addEventListener("click", () => {
+        if (cartModal.style.display === "none" || cartModal.style.display === "") {
+          cartModal.style.display = "block";
+        } else {
+          cartModal.style.display = "none";
         }
       });
     }
