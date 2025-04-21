@@ -24,23 +24,25 @@
     <p><strong>Hours:</strong><br>Mon–Fri: 6 a.m. – 8 p.m.<br>Sat: 8 a.m. – 6 p.m.<br>Sun: Closed</p>
 
     <h3>We’d love your feedback</h3>
-    <form>
+    <form id="contact-form">
       <label for="name">Name:</label><br>
-      <input type="text" id="name"><br><br>
+      <input type="text" id="name" name="name" required><br><br>
       <label for="email">Email:</label><br>
-      <input type="email" id="email"><br><br>
+      <input type="email" id="email" name="email" required><br><br>
       <label for="message">Message:</label><br>
-      <textarea id="message"></textarea><br><br>
+      <textarea id="message" name="message" required></textarea><br><br>
       <button type="submit">Submit</button>
     </form>
+    
   </main>
 
   <footer>
     <h4>Stay Connected</h4>
     <input type="email" placeholder="Enter your email">
-    <button>Sign Up</button>
+    <button id="subscribe-btn">Sign Up</button>
     <p>Follow us on social media: Instagram | Facebook</p>
   </footer>
+  <script src="script.js"></script>
 
 </body>
 </html>
