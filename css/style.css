@@ -68,3 +68,23 @@ label {
   left: 20px;
   z-index: 1000; /* ensures it appears above other elements */
 }
+
+#cart-modal {
+  position: absolute;
+  top: 60px; /* adjust as needed */
+  left: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 999;
+  display: none;
+  width: 300px; /* optional: constrain width */
+}
+
+#cart-modal button {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+}
+
