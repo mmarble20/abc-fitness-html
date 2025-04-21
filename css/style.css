@@ -1,0 +1,63 @@
+
+/* Base setup */
+body {
+  font-family: Calibri, Arial, sans-serif;
+  background-color: #FCFCFC; /* Endurance White */
+  color: #00231C;            /* Detritus Green */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: #17253F; /* Brisk Blue */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Navigation */
+nav a {
+  color: #DEF479; /* Lime Lift */
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+nav a:hover {
+  color: #91B9D2; /* Aqua Pulse */
+}
+
+/* Buttons */
+button, .cta-button {
+  background-color: #2343BD; /* Intensity Indigo */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover, .cta-button:hover {
+  background-color: #91B9D2; /* Aqua Pulse */
+}
+
+/* Footer */
+footer {
+  background-color: #17253F;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Form styling */
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 20px;
+  border: 1px solid #91B9D2;
+  border-radius: 5px;
+}
+
+label {
+  font-weight: bold;
+}
